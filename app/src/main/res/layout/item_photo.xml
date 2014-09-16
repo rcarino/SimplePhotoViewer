@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/photoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_launcher" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:background="#CCFFFFFF">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgProfile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:layout_toRightOf="@+id/imgProfile"
+                android:textColor="#6B91AD" />
+
+            <ImageView
+                android:id="@+id/icLocation"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/tvUserName"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:layout_toRightOf="@+id/imgProfile"
+                android:src="@drawable/location_icon" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvUserName"
+                android:layout_toEndOf="@+id/imgProfile"
+                android:layout_toRightOf="@+id/icLocation"
+                android:text="Stubville"
+                android:textColor="#55A6DF" />
+
+            <TextView
+                android:id="@+id/tvRelativeTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="Test relative timestamp"
+                android:textColor="#3D3D3D" />
+
+            <ImageView
+                android:id="@+id/imgClock"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tvRelativeTimestamp"
+                android:src="@drawable/clock_icon" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imgLikeIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/photoContainer"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/blue_heart_icon" />
+
+    <TextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photoContainer"
+        android:layout_toRightOf="@+id/imgLikeIcon"
+        android:textColor="#00A8EC" />
+
+    <TextView
+        android:id="@+id/tvCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvLikes"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/tvLikes"
+        android:textColor="#4E565D" />
+
+    <TextView
+        android:id="@+id/tvCommentsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvCaption"
+        android:layout_marginLeft="8dp"
+        android:textColor="#B4B8BB" />
+
+    <TextView
+        android:id="@+id/tvFirstComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvCommentsCount"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:id="@+id/tvSecondComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvFirstComment"
+        android:layout_marginLeft="8dp" />
+
+</RelativeLayout>
