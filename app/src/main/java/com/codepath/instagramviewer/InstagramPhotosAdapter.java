@@ -62,28 +62,31 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
     }
 
     private void setViewComments(InstagramPhoto photo, TextView tvCommentsCount, TextView tvFirstComment, TextView tvSecondComment) {
-        tvCommentsCount.setVisibility(View.INVISIBLE);
-        tvFirstComment.setVisibility(View.INVISIBLE);
-        tvSecondComment.setVisibility(View.INVISIBLE);
-
         if (photo.getCommentsCount() != "") {
             tvCommentsCount.setText(photo.getCommentsCount());
+        } else {
+            tvCommentsCount.setVisibility(View.INVISIBLE);
         }
 
         if (photo.getCommentAtIndex(0) != null) {
             tvFirstComment.setText(photo.getCommentAtIndex(0));
+        } else {
+            tvFirstComment.setVisibility(View.INVISIBLE);
         }
 
         if (photo.getCommentAtIndex(1) != null) {
             tvSecondComment.setText(photo.getCommentAtIndex(1));
+        } else {
+            tvSecondComment.setVisibility(View.INVISIBLE);
         }
     }
 
     private void setViewCaption(InstagramPhoto photo, TextView tvCaption) {
-        tvCaption.setVisibility(View.INVISIBLE);
         Spanned caption = photo.getCaption();
         if (caption != null) {
             tvCaption.setText(photo.getCaption());
+        } else {
+            tvCaption.setVisibility(View.INVISIBLE);
         }
     }
 
