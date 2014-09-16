@@ -2,6 +2,7 @@ package com.codepath.instagramviewer;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.text.Spanned;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,31 +34,57 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
         }
 
-        TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
-        TextView tvCommentsCount = (TextView) convertView.findViewById(R.id.tvCommentsCount);
-        TextView tvFirstComment = (TextView) convertView.findViewById(R.id.tvFirstComment);
-        TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
-        TextView tvRelativeTimestamp = (TextView) convertView.findViewById(R.id.tvRelativeTimestamp);
-        TextView tvSecondComment = (TextView) convertView.findViewById(R.id.tvSecondComment);
-        TextView tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
-        ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
         CircleImageView imgProfile = (CircleImageView) convertView.findViewById(R.id.imgProfile);
-
-        tvCaption.setText(photo.getCaption());
-        tvCommentsCount.setText(photo.getCommentsCount());
-        tvFirstComment.setText(photo.getCommentAtIndex(0));
-        tvLikes.setText(photo.getLikes());
-        tvRelativeTimestamp.setText(photo.getRelativeTimestamp());
-        tvSecondComment.setText(photo.getCommentAtIndex(1));
-        tvUserName.setText(photo.userName);
-
         imgProfile.setImageResource(0);
-
         Picasso.with(getContext()).load(photo.profileImageUrl).into(imgProfile);
 
+        TextView tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
+        tvUserName.setText(photo.userName);
+
+        TextView tvRelativeTimestamp = (TextView) convertView.findViewById(R.id.tvRelativeTimestamp);
+        tvRelativeTimestamp.setText(photo.getRelativeTimestamp());
+
+        ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
         loadAndResizeMainImage(photo, imgPhoto);
 
+        TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+        tvLikes.setText(photo.getLikes());
+
+        TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
+        setViewCaption(photo, tvCaption);
+
+        TextView tvCommentsCount = (TextView) convertView.findViewById(R.id.tvCommentsCount);
+        TextView tvFirstComment = (TextView) convertView.findViewById(R.id.tvFirstComment);
+        TextView tvSecondComment = (TextView) convertView.findViewById(R.id.tvSecondComment);
+        setViewComments(photo, tvCommentsCount, tvFirstComment, tvSecondComment);
+
         return convertView;
+    }
+
+    private void setViewComments(InstagramPhoto photo, TextView tvCommentsCount, TextView tvFirstComment, TextView tvSecondComment) {
+        tvCommentsCount.setVisibility(View.INVISIBLE);
+        tvFirstComment.setVisibility(View.INVISIBLE);
+        tvSecondComment.setVisibility(View.INVISIBLE);
+
+        if (photo.getCommentsCount() != "") {
+            tvCommentsCount.setText(photo.getCommentsCount());
+        }
+
+        if (photo.getCommentAtIndex(0) != null) {
+            tvFirstComment.setText(photo.getCommentAtIndex(0));
+        }
+
+        if (photo.getCommentAtIndex(1) != null) {
+            tvSecondComment.setText(photo.getCommentAtIndex(1));
+        }
+    }
+
+    private void setViewCaption(InstagramPhoto photo, TextView tvCaption) {
+        tvCaption.setVisibility(View.INVISIBLE);
+        Spanned caption = photo.getCaption();
+        if (caption != null) {
+            tvCaption.setText(photo.getCaption());
+        }
     }
 
     private void loadAndResizeMainImage(InstagramPhoto photo, ImageView target) {
